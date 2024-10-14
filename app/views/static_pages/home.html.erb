@@ -1,0 +1,26 @@
+<% if logged_in? %>
+    <div class="row justify-content-around">
+        <div class="col-4">
+            <%= render 'microposts/form' %>
+        </div>
+        <div class="col-4">
+        <% if @current_user.microposts.any? %>
+            <h3>Microposts feed</h3>
+            <ol class="col align-self-center">
+                <%= render @microposts %>
+            </ol>
+        <% end %>
+    </div>
+<% else %>
+<% provide(:title, "Home") %>
+<h1>Sample App</h1>
+<p>
+This is the home page for the
+<a href="https://www.railstutorial.org/">Ruby on Rails Tutorial</a>
+sample application.
+</p>
+</body>
+</html>
+<%end%>
+
+

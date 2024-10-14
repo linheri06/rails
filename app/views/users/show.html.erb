@@ -1,0 +1,41 @@
+<div>
+<h1>
+<%= gravatar_for @user %>
+<%= @user.name %>
+</h1>
+
+</div>
+
+<div class="row justify-content-around">
+    <div class="col-4">
+        <% if current_user.id == @user.id %>
+            <section class="stats"><%= render 'shared/stats' %></section>
+            <br><br>
+            <%= render 'microposts/form' %>
+        <%else%>
+            <%= button_to "", method: :post, class: 'btn btn-primary' do%>
+                <i class="bi bi-chat-dots"></i>
+            <%end%>
+        <% end %>
+    </div>
+<div class="col-4">
+    <%= render 'follow_form' if logged_in? %>
+    <% if @user.microposts.any? %>
+        <h3>Microposts (<%= @microposts.count %>)</h3>
+        <%= form_with url: filter_microposts_path, method: :get, class: "d-flex", role: "search" do %>
+            <%= hidden_field_tag :user_id, @user.id %>
+            <%= date_field_tag :query, nil, class: "form-control me-2" %>
+            <%= submit_tag "Filter", onblur: (@query.present? ? @query : "dd/mm/yy"), class: "btn btn-outline-success" %>
+        <% end %> 
+        <br>
+        <ol class="col align-self-center">
+            <%= render @microposts%>
+        </ol>
+    <%else%>
+        <h3>Microposts (0)</h3>
+    <% end %>
+</div>
+</div>
+
+
+

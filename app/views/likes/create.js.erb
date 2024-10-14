@@ -1,0 +1,11 @@
+# Cập nhật số lượng likes trong phần tử có id là `like_count_#{@micropost.id}`
+console.log('JavaScript is working!'2);
+$('like_count_<%=params[:micropost_id] %>').html('<%= @micropost.micropost_liking.count %>');
+console.log('JavaScript is working!1');
+# Nếu bạn muốn đổi lớp CSS để hiển thị nút like khác, bạn có thể làm như sau:
+$('#like_button_602').toggleClass('btn btn-primary');
+
+#$('#micropost-<%=params[:micropost_id]%>').load(root_path);
+ console.log('JavaScript is working!')
+# element = document.getElementById("like_button_602");
+# element.classList.toggle("btn btn-primary");
